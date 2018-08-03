@@ -1,16 +1,7 @@
-const { models: { user }, Sequelize: { Op } } = require('../models');
+const { models: { user } } = require('../models');
 const { makeHash } = require('../utils/password');
 
 const getUser = userId => user.findById(userId);
-
-const findUsers = (name, email) => user.findAll({
-  where: {
-    [Op.and]: [
-      name && { name: { [Op.like]: `${name}%` } },
-      email && { email: { [Op.like]: `${email}%` } },
-    ].filter(item => !!item),
-  },
-});
 
 const updateProfile = (userId, profileUpdate) => {
   const { name, email, about, password, passwordConfirm } = profileUpdate;
@@ -35,7 +26,6 @@ const updateProfile = (userId, profileUpdate) => {
 
 
 module.exports = {
-  findUsers,
   getUser,
   updateProfile,
 };
