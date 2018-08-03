@@ -8,6 +8,14 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    roleId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    bossId: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+    },
     email: {
       type: Sequelize.STRING(255),
       allowNull: false,
@@ -26,6 +34,12 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
   });
+  User.associate = (models) => {
+    User.belongsTo(models.User, {
+      foreignKey: 'bossId',
+      as: 'boss',
+    });
+  };
   User.prototype.toJSON = function () {
     const values = Object.assign({}, this.get());
     delete values.pass;
