@@ -1,0 +1,41 @@
+{
+  "name": "big-boss",
+  "version": "0.0.1",
+  "description": "Big Boss App",
+  "main": "app.js",
+  "scripts": {
+    "forever": "forever app.js",
+    "start": "node app.js",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/yarphen/big-boss.git"
+  },
+  "author": "yarphen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yarphen/big-boss/issues"
+  },
+  "homepage": "https://github.com/yarphen/big-boss#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "config": "^2.0.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "forever": "^0.15.3",
+    "jsonwebtoken": "^8.3.0",
+    "nodemailer": "^4.6.7",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.4.3",
+    "sequelize": "^4.38.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-async-await": "0.0.0",
+    "eslint-plugin-import": "^2.13.0"
+  }
+}
