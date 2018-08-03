@@ -32,15 +32,15 @@ const checkAccessToChangeBoss = async (req, res) => { // eslint-disable-line
   if (targetUserId === currentUserId || bossId === targetUserId) {
     throw new Error('Access denied');
   }
-  const isTargetUserSubordinateOfCurrent = isSubordinate(targetUserId, currentUserId);
+  const isTargetUserSubordinateOfCurrent = await isSubordinate(targetUserId, currentUserId);
   if (!isTargetUserSubordinateOfCurrent) {
     throw new Error('Access denied');
   }
-  const isBossUserSubordinateOfCurrent = isSubordinate(bossId, currentUserId);
+  const isBossUserSubordinateOfCurrent = await isSubordinate(bossId, currentUserId);
   if (!isBossUserSubordinateOfCurrent && bossId !== currentUserId) {
     throw new Error('Access denied');
   }
-  const isBossUserSubordinateOfTarget = isSubordinate(bossId, targetUserId);
+  const isBossUserSubordinateOfTarget = await isSubordinate(bossId, targetUserId);
   if (!isBossUserSubordinateOfTarget) {
     throw new Error('Circular dependency is not allowed!');
   }
