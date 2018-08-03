@@ -75,11 +75,11 @@ const changeBoss = async (userId, bossId) => {
     // setting new boss for current user
     await user.update({ bossId }, { where: { userId } }, { transaction });
     // updating role of new boss
-    await user.findOne({ roleId: ROLE_BOSS }, { where: { userId: bossId } }, { transaction });
+    await user.update({ roleId: ROLE_BOSS }, { where: { userId: bossId } }, { transaction });
     // downgrading old boss if he has no more subordinates
     const subsOfOldBoss = await findDirectSubs(oldBossId, { transaction });
     if (!subsOfOldBoss.length) {
-      await user.findOne({ roleId: ROLE_USER }, { where: { userId: oldBossId } }, { transaction });
+      await user.update({ roleId: ROLE_USER }, { where: { userId: oldBossId } }, { transaction });
     }
   });
 };

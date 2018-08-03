@@ -4,7 +4,6 @@ const handler = require('../utils/handler');
 const userService = require('../services/user');
 const bossService = require('../services/boss');
 const { checkAccessToView, checkAccessToUpdate, checkAccessToChangeBoss } = require('../middlewares/acl');
-const { userSearchValidate } = require('../middlewares/validate');
 
 const findSubsRecur = async (req, res) => {
   const { userId } = req.user;
@@ -43,7 +42,7 @@ const changeBoss = async (req, res) => {
 };
 
 module.exports = (app) => {
-  app.get('/users', passport.authenticate('jwt', { session: false }), userSearchValidate, handler(findSubsRecur));
+  app.get('/users', passport.authenticate('jwt', { session: false }), handler(findSubsRecur));
   app.get('/users/:userId', passport.authenticate('jwt', { session: false }), checkAccessToView, handler(getUser));
   app.patch('/users/:userId', passport.authenticate('jwt', { session: false }), checkAccessToUpdate, handler(updateProfile));
   app.get('/users/:userId/subs', passport.authenticate('jwt', { session: false }), checkAccessToView, handler(findDirectSubs));
