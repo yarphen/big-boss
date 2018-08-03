@@ -8,6 +8,10 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    roleId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
     email: {
       type: Sequelize.STRING(255),
       allowNull: false,
